@@ -21,7 +21,7 @@ Installed opentelemetry contrib collector. Installation steps for ubuntu:
     wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.152.0/otelcol-contrib_0.152.0_linux_amd64.deb
     sudo dpkg -i otelcol-contrib_0.152.0_linux_amd64.deb
 
-    sudo cp  /etc/oitelcol-contrib/config.yaml
+    sudo cp opentelcollector_config.yaml /etc/otelcol-contrib/config.yaml
 
     receivers:
       hostmetrics:
