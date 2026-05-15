@@ -6,46 +6,46 @@ Immediate interest is with Informix, but large platforms like PostgreSQL, MS SQL
 
 ## Building
 
-mvn clean package
-sudo cp target/dbmarlin-otlp-0.1.0.war /opt/tomcat/webapps/dbmarlin-otlp.war
+    mvn clean package
+    sudo cp target/dbmarlin-otlp-0.1.0.war /opt/tomcat/webapps/dbmarlin-otlp.war
 
 ## Testing
 
-curl http://localhost:8080/dbmarlin-otlp/v1/metrics
+    curl http://localhost:8080/dbmarlin-otlp/v1/metrics
 
 ## Trying with an open telemetry collector
 
 Installed opentelemetry contrib collector. Installation steps for ubuntu:
 
-cd /tmp
-wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.152.0/otelcol-contrib_0.152.0_linux_amd64.deb
-sudo dpkg -i otelcol-contrib_0.152.0_linux_amd64.deb
+    cd /tmp
+    wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.152.0/otelcol-contrib_0.152.0_linux_amd64.deb
+    sudo dpkg -i otelcol-contrib_0.152.0_linux_amd64.deb
 
-sudo cp  /etc/oitelcol-contrib/config.yaml
+    sudo cp  /etc/oitelcol-contrib/config.yaml
 
-receivers:
-  hostmetrics:
-    collection_interval: 30s
-    scrapers:
-      cpu:
-      memory:
-      disk:
-      filesystem:
-      network:
-      load:
-
-processors:
-  batch:
-
-exporters:
-  otlphttp/dbmarlin:
-    endpoint: http://localhost:8080/dbmarlin-otlp
-    compression: gzip
-
-service:
-  pipelines:
-    metrics:
-      receivers: [hostmetrics]
-      processors: [batch]
-      exporters: [otlphttp/dbmarlin]
+    receivers:
+      hostmetrics:
+        collection_interval: 30s
+        scrapers:
+          cpu:
+          memory:
+          disk:
+          filesystem:
+          network:
+          load:
+    
+    processors:
+      batch:
+    
+    exporters:
+      otlphttp/dbmarlin:
+        endpoint: http://localhost:8080/dbmarlin-otlp
+        compression: gzip
+    
+    service:
+      pipelines:
+        metrics:
+        receivers: [hostmetrics]
+          processors: [batch]
+          exporters: [otlphttp/dbmarlin]
 
