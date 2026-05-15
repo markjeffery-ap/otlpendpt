@@ -1,0 +1,16 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         version="4.0">
+
+  <display-name>DBmarlin OTLP Prototype</display-name>
+
+  <servlet>
+    <servlet-name>OtlpMetricsServlet</servlet-name>
+    <servlet-class>com.dbmarlin.otlp.OtlpMetricsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>OtlpMetricsServlet</servlet-name>
+    <url-pattern>/v1/metrics</url-pattern>
+  </servlet-mapping>
+
+</web-app>
